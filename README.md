@@ -1,59 +1,83 @@
-# PruebaFinaktivaFt
+# 🧾 Frontend - Registro de Eventos (Finaktiva)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.7.
+Este es el frontend del proyecto **Finaktiva - Registro de Eventos**, desarrollado con **Angular 19** y desplegado en **Vercel**. Consume la API desarrollada en NestJS alojada en **AWS Lambda**.
 
-## Development server
+## 🚀 Tecnologías utilizadas
 
-To start a local development server, run:
+- ⚛️ Angular 19 
+- 💨 TailwindCSS para estilos
+- 🔐 Autenticación simulada en frontend
+- 🌍 Despliegue en Vercel
+- 🌐 Consumo de API externa en AWS Lambda
+
+## 🎯 Funcionalidades
+
+- ✅ Login con validación en frontend
+- ✅ Tabla de eventos
+- ✅ Filtro por tipo (`API` o `Manual`)
+- ✅ Filtro por fecha: desde y hasta
+- ✅ Creación de eventos manuales mediante modal
+
+## 📦 Estructura de carpetas
+
+```bash
+src/
+├── app/
+│   ├── login/                     # Componente de Login
+│   ├── events-table/              # Tabla con filtros
+│   ├── create-events/             # Formulario en modal
+│   ├── services/                  # Servicio para consumir API
+│   ├── app.routes.ts              # Ruteo 
+│   └── app.component.ts           # Componente principal
+```
+
+## 🛠️ Instalación y ejecución local
+
+### Clona el repositorio:
+
+```bash
+git clone https://github.com/juanregino/prueba-finaktiva-front.git
+cd prueba-finaktiva-front
+```
+
+### Instala las dependencias:
+
+```bash
+npm install
+```
+
+### Ejecuta el proyecto:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+La app estará disponible en:
+👉 http://localhost:4200
 
-## Code scaffolding
+## 🔓 Credenciales de acceso
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Este proyecto simula autenticación desde frontend:
 
-```bash
-ng generate component component-name
-```
+**Usuario:** admin@admin.com  
+**Contraseña:** 123456
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🧪 Flujo funcional
 
-```bash
-ng generate --help
-```
+1. Inicia sesión en la página principal
+2. Visualiza los eventos registrados
+3. Filtra por tipo (API o Manual) y/o por fechas
+4. Crea un nuevo evento usando el botón modal
+5. Valida que se agregue a la tabla
 
-## Building
+## 🌐 Despliegue en Vercel
 
-To build the project run:
+Este proyecto está desplegado automáticamente en Vercel:
 
-```bash
-ng build
-```
+🔗 https://prueba-finaktiva-front.vercel.app
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
+## 📬 Autor
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**Autor:** Juan Pablo Regino Penagos  
+📧 juanreginopenagos@gmail.com  
