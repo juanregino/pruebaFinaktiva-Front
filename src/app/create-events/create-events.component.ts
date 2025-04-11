@@ -20,9 +20,9 @@ export class CreateEventsComponent {
   submit(): void {
     this.eventLogService
       .createEvent({
-        description: 'Creado desde Angular',
+        description: this.description,
         type: 'Manual',
-        date: new Date().toISOString(),
+        date: this.date,
       })
       .subscribe({
         next: () => {
