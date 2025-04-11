@@ -1,55 +1,84 @@
-<h2 class="text-xl font-bold my-4">Lista de eventos</h2>
+<main class="p-4">
+  <h2 class="text-xl font-bold my-4">Lista de eventos</h2>
 
-<div class="mb-4 flex flex-col sm:flex-row items-center gap-4">
-  <label class="font-medium">Filtrar por tipo:</label>
-  <select
-    [(ngModel)]="selectedType"
-    (ngModelChange)="filterEvents()"
-    class="px-4 py-2 border border-gray-300 rounded-md shadow-sm"
-  >
-    <option value="">Todos</option>
-    <option value="API">API</option>
-    <option value="Manual">Manual</option>
-  </select>
+  <section class="flex flex-col sm:flex-row gap-8 items-end my-8">
+    <div class="flex flex-col gap-2">
+      <label class="font-medium">Filtrar por tipo:</label>
+      <select
+        [(ngModel)]="selectedType"
+        (ngModelChange)="filterEvents()"
+        class="px-4 py-2 border border-gray-300 rounded-md shadow-sm"
+      >
+        <option value="">Todos</option>
+        <option value="API">API</option>
+        <option value="Manual">Manual</option>
+      </select>
+    </div>
 
-  <label class="font-medium">Desde:</label>
-  <input
-    type="date"
-    [(ngModel)]="sinceDate"
-    (change)="filterEvents()"
-    class="px-4 py-2 border border-gray-300 rounded-md shadow-sm"
-  />
+    <div class="flex flex-col gap-2">
+      <label class="font-medium">Desde:</label>
+      <input
+        type="date"
+        [(ngModel)]="sinceDate"
+        (change)="filterEvents()"
+        class="px-4 py-2 border border-gray-300 rounded-md shadow-sm"
+      />
+    </div>
 
-  <label class="font-medium">Hasta:</label>
-  <input
-    type="date"
-    [(ngModel)]="untilDate"
-    (change)="filterEvents()"
-    class="px-4 py-2 border border-gray-300 rounded-md shadow-sm"
-  />
-</div>
+    <div class="flex flex-col gap-2">
+      <label class="font-medium">Hasta:</label>
+      <input
+        type="date"
+        [(ngModel)]="untilDate"
+        (change)="filterEvents()"
+        class="px-4 py-2 border border-gray-300 rounded-md shadow-sm"
+      />
+    </div>
 
+    <button
+      (click)="eventCreated()"
+      class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+    >
+      Crear evento
+    </button>
 
-<table class="table-auto w-full border border-gray-300">
-  <thead class="bg-gray-200 text-left">
-    <tr>
-      <th class="px-4 py-2">Descripción</th>
-      <th class="px-4 py-2">Tipo</th>
-      <th class="px-4 py-2">Fecha</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (event of events; track event.id) {
-      <tr class="border-t">
-        <td class="px-4 py-2">{{ event.description }}</td>
-        <td class="px-4 py-2">{{ event.type }}</td>
-        <td class="px-4 py-2">{{ event.date | date: 'dd/MM/yyyy' }}</td>
-      </tr>
-    }
-    @empty {
-      <tr class="border-t">
-        <td colspan="3" class="px-4 py-2 text-center">No hay eventos disponibles</td>
-      </tr>
-    }
-  </tbody>
-</table>
+    <div
+      *ngIf="openModal"
+      class="fixed inset-0 bg-gray-500/75 flex items-center justify-center transition-opacity"
+    >
+      <div class="bg-white rounded-lg p-6 w-full max-w-md shadow-lg relative">
+        <app-create-events
+          (eventCreated)="eventCreated()"
+          (close)="closeModal()"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="max-h-[600px] overflow-y-auto">
+    <table class="table-auto w-full border border-gray-300">
+      <thead class="bg-gray-200 text-left">
+        <tr>
+          <th class="px-4 py-2">Descripción</th>
+          <th class="px-4 py-2">Tipo</th>
+          <th class="px-4 py-2">Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (event of events; track event.id) {
+        <tr class="border-t">
+          <td class="px-4 py-2">{{ event.description }}</td>
+          <td class="px-4 py-2">{{ event.type }}</td>
+          <td class="px-4 py-2">{{ event.date | date : "dd/MM/yyyy" }}</td>
+        </tr>
+        } @empty {
+        <tr class="border-t">
+          <td colspan="3" class="px-4 py-2 text-center">
+            No hay eventos disponibles
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </section>
+</main>

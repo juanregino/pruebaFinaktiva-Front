@@ -1,20 +1,21 @@
 import { Component } from '@angular/core';
 import { EventLog, EventLogService } from '../services/event-log.service';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CreateEventsComponent } from '../create-events/create-events.component';
 @Component({
   selector: 'app-events-table',
-  imports: [DatePipe, FormsModule],
+  imports: [DatePipe, FormsModule, CreateEventsComponent, CommonModule],
   templateUrl: './events-table.component.html',
-  styleUrl: './events-table.component.css',
 })
 export class EventsTableComponent {
   constructor(private eventLogService: EventLogService) {}
-  loading = false;
+  loading: boolean = false;
   events: EventLog[] = [];
   selectedType: string = '';
   sinceDate: string = '';
   untilDate: string = '';
+  openModal: boolean = false;
   ngOnInit(): void {
     this.getEvents();
   }
@@ -42,5 +43,13 @@ export class EventsTableComponent {
 
   filterEvents(): void {
     this.getEvents();
+  }
+
+  eventCreated(): void {
+    this.openModal = true;
+  }
+
+  closeModal(): void {
+    this.openModal = false;
   }
 }

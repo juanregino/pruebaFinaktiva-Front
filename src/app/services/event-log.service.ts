@@ -1,10 +1,9 @@
-// src/app/services/event-log.service.ts
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export interface EventLog {
-  id: string;
+  id?: string;
   description: string;
   type: 'API' | 'Manual';
   date: string;
@@ -29,7 +28,14 @@ export class EventLogService {
       });
     }
     const logs = this.http.get<EventLog[]>(this.baseUrl, { params });
-    
-    return logs
+
+    return logs;
+  }
+
+  createEvent(event: EventLog): Observable<EventLog> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.post<EventLog>(this.baseUrl, event, { headers });
   }
 }

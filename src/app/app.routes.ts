@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { EventsTableComponent } from './events-table/events-table.component';
 
 export const routes: Routes = [
   {
@@ -9,11 +10,7 @@ export const routes: Routes = [
   },
   {
     path: 'eventList',
-    loadComponent() {
-      return import('./events-table/events-table.component').then(
-        (m) => m.EventsTableComponent
-      );
-    },
+    component: EventsTableComponent,
   },
   {
     path: '',
